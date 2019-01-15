@@ -1,18 +1,12 @@
 <template>
     <div>
-    <div>
-        <img src="http://119.3.204.44:8090/img/eye-logo.png">
-    </div>
+    <div><text class="welcome">login</text></div>
     <div><text @click="jump('/login')" class="welcome">账号登录</text></div>
-    <wxc-button text="账号登录" @wxcButtonClicked="jump('/login')"></wxc-button>
     </div>
 </template>
 
 <script>
-import { WxcButton } from 'weex-ui';
-var navigator = weex.requireModule('navigator')
 export default {
-    components: { WxcButton },
     data () {
         return {
             firstOpen:false
@@ -21,10 +15,18 @@ export default {
     methods:{
         jump (src) {
             this.$router.push(src);
+        },
+        JumpNative(){
+            //错误的方式
+            var params = {'url':'/websocket','animated':'true'}
+            navigator.push(params, function(e) {
+                console.log('i am the callback.')
+            });
         }
     }
 }
 </script>
 
 <style scoped>
+
 </style>
